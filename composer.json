@@ -1,0 +1,24 @@
+{
+    "name": "hubmais/h-smart-tef",
+    "description": "Plugin to actions for SmartPOS HUBMAIS",
+    "type": "library",
+    "require": {
+        "php": "^7.1 || ^8.0",
+        "hubmais/h-http-client": "^2.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.36"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hubmais\\HSmartTef\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
