@@ -34,4 +34,9 @@ class Manager
     {
         return new RequestService($this->client);
     }
+
+    public function terminals(): TerminalService
+    {
+        return new TerminalService($this->client);
+    }
 }

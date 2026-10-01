@@ -26,13 +26,11 @@ Após a instalação é necessário executar o comando abaixo:
 php artisan vendor:publish --provider="Hubmais\HSmartTef\Providers\HSmartTefServiceProvider"
 ```
 
-Depois é necessário configurar o arquivo de configuração, presente em config/h-checkout.php com as credenciais fornecidas.
+Depois é necessário configurar o arquivo de configuração, presente em config/h-client.php com as credenciais fornecidas.
 
 ***
 
-# Exemplos de uso
-
-## Inicializando sem Facade
+# Inicializando sem Facade
 
 ```php
 <?php
@@ -49,6 +47,25 @@ $HSmartTef = new HSmartTefManager($client);
 
 ```
 
+# Listando terminais
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+$response = HSmartTef::terminals()->list();
+
+foreach($reponse['data'] as $terminal)
+{
+    ...
+}
+```
+
+<br>
+
+# Vendas
+
 ## Criando venda PIX
 
 ```php
@@ -57,7 +74,7 @@ $HSmartTef = new HSmartTefManager($client);
 use Hubmais\HSmartTef\Facades\HSmartTef;
 
 $transaction = HSmartTef::transactions()->charge(
-    $terminal->id,
+    $terminal['id'],
     amount: '100.00',
     paymentType: 'pix'
 );
@@ -71,12 +88,131 @@ $transaction = HSmartTef::transactions()->charge(
 use Hubmais\HSmartTef\Facades\HSmartTef;
 
 $transaction = HSmartTef::transactions()->charge(
-    $terminal->id,
+    $terminal['id'],
     amount: '100.00',
     paymentType: 'card', 
     paymentTax: 'buyer', # buyer ou seller
     intallments: 2,
     brand: 'Visa',
     requestId: '123'
+);
+```
+<br>
+
+# Opções de gerenciamento
+
+## Desligar terminal
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::system()->shutdown();
+```
+
+## Reiniciar terminal
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::system()->reboot();
+```
+
+## Resetar senha administrativa
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::system()->adminPassordReset();
+```
+
+## Atualizar tabelas
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::system()->syncTable();
+```
+<br>
+
+# Enviar notificação
+
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::notifications()->send($terminal['id'], 'Atenção', 'Atualizaremos seu terminal em alguns instantes.');
+```
+
+<br>
+
+# Requisitando dados
+
+## Requisitar CPF/CNPJ
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->doc($terminal['id']);
+```
+
+## Requisitar Celular
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->phone($terminal['id']);
+```
+
+## Requisitar IP
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->ip($terminal['id']);
+```
+
+## Requisitar Serial
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->serial($terminal['id']);
+```
+
+## Requisitar Versão do App
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->appVersion($terminal['id']);
+```
+
+## Requisitar com Opções
+```php
+<?php
+
+use Hubmais\HSmartTef\Facades\HSmartTef;
+
+HSmartTef::requests()->options(
+    $terminal['id'],
+    'Deseja CPF na nota?',
+    [
+        '1:Sim',
+        '0:Não',
+    ]
 );
 ```

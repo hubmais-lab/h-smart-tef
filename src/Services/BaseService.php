@@ -10,14 +10,9 @@ abstract class BaseService
     {
     }
 
-    private function getBasePath(): string
-    {
-        return EndpointBuilder::marketplacePath($this->client, 'terminals');
-    }
-
     protected function command(string $action, string $terminalId, array $options = [])
     {
-        return $this->client->post($this->getBasePath()."/terminals/{$terminalId}/command", [
+        return $this->client->post(EndpointBuilder::marketplacePath($this->client, 'terminals')."/{$terminalId}/command", [
             'action' => $action,
             'options' => $options
         ]);

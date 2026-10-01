@@ -21,4 +21,24 @@ class EndpointBuilder
 
         return "/v1/marketplaces/{$client->marketplaceId}/{$resource}";
     }
+
+    public static function marketplaceSellerPath(
+        Client $client,
+        string $resource,
+        ?string $sellerId = null
+    ): string
+    {
+        if (empty($client->marketplaceId))
+            throw new ClientException('Marketplace ID is not configured.', 400);
+
+        if (empty($client->sellerId) && empty($sellerId))
+            throw new ClientException('Seller ID is not configured.', 400);
+
+        if(empty($sellerId))
+            $sellerId = $client->sellerId;
+
+        $resource = ltrim($resource, '/');
+
+        return "/v1/marketplaces/{$client->marketplaceId}/sellers/{$sellerId}/{$resource}";
+    }
 }

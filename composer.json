@@ -6,9 +6,6 @@
         "php": "^7.1 || ^8.0",
         "hubmais/h-http-client": "^2.0"
     },
-    "require-dev": {
-        "pestphp/pest": "^2.36"
-    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -20,5 +17,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.7"
     }
 }

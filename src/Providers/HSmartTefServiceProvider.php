@@ -10,6 +10,8 @@ class HSmartTefServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->register(\Hubmais\HClient\Providers\HClientServiceProvider::class);
+
        /** @noinspection PhpUndefinedMethodInspection */
         $this->app->singleton(\Hubmais\HSmartTef\Services\Manager::class, function ($app) {
             return new \Hubmais\HSmartTef\Services\Manager($app->make(\Hubmais\HClient\Client::class));
