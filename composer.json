@@ -3,7 +3,7 @@
     "description": "Plugin to actions for SmartPOS HUBMAIS",
     "type": "library",
     "require": {
-        "php": "^7.1 || ^8.0",
+        "php": "^7.2 || ^8.0",
         "hubmais/h-http-client": "^2.0"
     },
     "license": "MIT",
@@ -12,13 +12,25 @@
             "Hubmais\\HSmartTef\\": "src/"
         }
     },
-    "minimum-stability": "stable",
+    "require-dev": {
+        "pestphp/pest": "^4.7"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hubmais\\HSmartTef\\Providers\\HSmartTefServiceProvider"
+            ],
+            "aliases": {
+                "HSmartTef": "Hubmais\\HSmartTef\\Facades\\HSmartTef"
+            }
+        }
+    },
     "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
     },
-    "require-dev": {
-        "pestphp/pest": "^4.7"
-    }
+    "minimum-stability": "stable"
 }

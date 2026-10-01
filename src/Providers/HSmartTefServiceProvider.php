@@ -24,6 +24,6 @@ class HSmartTefServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        
+        $this->publishes(self::pathsToPublish(\Hubmais\HClient\Providers\HClientServiceProvider::class), 'h-smart-tef-config');
     }
 }
