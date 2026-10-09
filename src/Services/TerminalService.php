@@ -1,7 +1,7 @@
 <?php
 namespace Hubmais\HSmartTef\Services;
 
-use Hubmais\HSmartTef\Support\EndpointBuilder;
+use Hubmais\HClient\Support\EndpointBuilder;
 
 class TerminalService extends BaseService
 {

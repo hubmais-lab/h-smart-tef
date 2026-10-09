@@ -2,7 +2,7 @@
 namespace Hubmais\HSmartTef\Services;
 
 use Hubmais\HClient\Client;
-use Hubmais\HSmartTef\Support\EndpointBuilder;
+use Hubmais\HClient\Support\EndpointBuilder;
 
 abstract class BaseService
 {
