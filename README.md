@@ -1,4 +1,4 @@
-# H+Http Client Api PHP
+# H+Smart TEF
 
 Esse plugin foi construído em PHP para a realização de ações na SmartPOS como um TEF via API Hubmais.
 Aqui vamos mostrar como é facil a instalação e utilização.
